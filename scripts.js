@@ -40,16 +40,22 @@ function initApp() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          //background image
           if (entry.target.id === "background-image") {
             entry.target.classList.add("background-show");
           }
-
-          if (!entry.target.id || entry.target.id !== "background-image") {
+          // all other hidden elements
+          if (!entry.target.id || entry.target.id !== "background-image" && entry.target.id !== "pop-up-banner") {
             entry.target.classList.add("show");
             setTimeout(() => {
               entry.target.classList.remove("hidden");
             }, 3000);
           }
+          // pop-up
+          if (entry.target.id === "pop-up-banner") {
+            
+          }
+
           observer.unobserve(entry.target);
         }
       });
